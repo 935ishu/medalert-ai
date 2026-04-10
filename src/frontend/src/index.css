@@ -1,0 +1,238 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "General Sans";
+    --font-body: "General Sans";
+    --font-mono: "Geist Mono";
+    --radius: 0.5rem;
+
+    --background: 0.98 0 0;
+    --foreground: 0.15 0 0;
+    --card: 0.99 0 0;
+    --card-foreground: 0.15 0 0;
+    --popover: 0.99 0 0;
+    --popover-foreground: 0.15 0 0;
+
+    --primary: 0.68 0.18 152;
+    --primary-foreground: 0.98 0 0;
+
+    --secondary: 0.92 0 0;
+    --secondary-foreground: 0.2 0 0;
+    --muted: 0.92 0 0;
+    --muted-foreground: 0.48 0 0;
+
+    --accent: 0.68 0.18 152;
+    --accent-foreground: 0.98 0 0;
+
+    --destructive: 0.58 0.23 27;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.88 0 0;
+    --input: 0.88 0 0;
+    --ring: 0.6 0.19 152;
+
+    --safe: 0.68 0.2 152;
+    --near-expiry: 0.72 0.18 78;
+    --expired: 0.62 0.22 27;
+
+    --chart-1: 0.65 0.23 152;
+    --chart-2: 0.72 0.18 78;
+    --chart-3: 0.62 0.22 27;
+    --chart-4: 0.6 0.19 142;
+    --chart-5: 0.55 0.15 32;
+
+    --sidebar: 0.98 0 0;
+    --sidebar-foreground: 0.15 0 0;
+    --sidebar-primary: 0.5 0.12 142;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.92 0 0;
+    --sidebar-accent-foreground: 0.2 0 0;
+    --sidebar-border: 0.88 0 0;
+    --sidebar-ring: 0.6 0.19 142;
+  }
+
+  .dark {
+    --background: 0.1 0.005 250;
+    --foreground: 0.95 0.005 240;
+    --card: 0.14 0.008 250;
+    --card-foreground: 0.95 0.005 240;
+    --popover: 0.16 0.008 250;
+    --popover-foreground: 0.95 0.005 240;
+
+    --primary: 0.72 0.2 152;
+    --primary-foreground: 0.08 0 0;
+
+    --secondary: 0.18 0.008 250;
+    --secondary-foreground: 0.88 0.005 240;
+    --muted: 0.17 0.008 250;
+    --muted-foreground: 0.55 0.01 240;
+
+    --accent: 0.72 0.2 152;
+    --accent-foreground: 0.08 0 0;
+
+    --destructive: 0.65 0.22 27;
+    --destructive-foreground: 0.97 0 0;
+
+    --border: 0.22 0.008 250;
+    --input: 0.22 0.008 250;
+    --ring: 0.72 0.2 152;
+
+    --safe: 0.72 0.2 152;
+    --near-expiry: 0.78 0.19 78;
+    --expired: 0.65 0.22 27;
+
+    --chart-1: 0.72 0.2 152;
+    --chart-2: 0.78 0.19 78;
+    --chart-3: 0.65 0.22 27;
+    --chart-4: 0.6 0.19 142;
+    --chart-5: 0.55 0.15 32;
+
+    --sidebar: 0.11 0.007 252;
+    --sidebar-foreground: 0.95 0.005 240;
+    --sidebar-primary: 0.72 0.2 152;
+    --sidebar-primary-foreground: 0.08 0 0;
+    --sidebar-accent: 0.17 0.008 250;
+    --sidebar-accent-foreground: 0.88 0.005 240;
+    --sidebar-border: 0.2 0.008 250;
+    --sidebar-ring: 0.72 0.2 152;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .transition-colors-fast {
+    transition: color 0.15s ease, background-color 0.15s ease, border-color
+      0.15s ease;
+  }
+
+  .badge-safe {
+    background-color: oklch(var(--safe) / 0.15);
+    color: oklch(var(--safe));
+    border-color: oklch(var(--safe) / 0.3);
+  }
+
+  .badge-near-expiry {
+    background-color: oklch(var(--near-expiry) / 0.15);
+    color: oklch(var(--near-expiry));
+    border-color: oklch(var(--near-expiry) / 0.3);
+  }
+
+  .badge-expired {
+    background-color: oklch(var(--expired) / 0.15);
+    color: oklch(var(--expired));
+    border-color: oklch(var(--expired) / 0.3);
+  }
+
+  .stat-card-safe {
+    border-color: oklch(var(--safe) / 0.3);
+    background: linear-gradient(
+      135deg,
+      oklch(var(--safe) / 0.08),
+      oklch(var(--card))
+    );
+  }
+
+  .stat-card-near {
+    border-color: oklch(var(--near-expiry) / 0.3);
+    background: linear-gradient(
+      135deg,
+      oklch(var(--near-expiry) / 0.08),
+      oklch(var(--card))
+    );
+  }
+
+  .stat-card-expired {
+    border-color: oklch(var(--expired) / 0.3);
+    background: linear-gradient(
+      135deg,
+      oklch(var(--expired) / 0.08),
+      oklch(var(--card))
+    );
+  }
+
+  .sidebar-nav-active {
+    background-color: oklch(var(--sidebar-primary) / 0.15);
+    color: oklch(var(--sidebar-primary));
+    border-right: 2px solid oklch(var(--sidebar-primary));
+  }
+
+  .sidebar-nav-inactive {
+    color: oklch(var(--sidebar-foreground) / 0.7);
+  }
+
+  .sidebar-nav-inactive:hover {
+    background-color: oklch(var(--sidebar-accent) / 0.5);
+    color: oklch(var(--sidebar-foreground));
+  }
+
+  .glow-safe {
+    box-shadow: 0 0 20px oklch(var(--safe) / 0.15);
+  }
+
+  .glow-expired {
+    box-shadow: 0 0 20px oklch(var(--expired) / 0.15);
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: oklch(var(--border)) transparent;
+  }
+
+  .text-safe {
+    color: oklch(var(--safe));
+  }
+
+  .text-near-expiry {
+    color: oklch(var(--near-expiry));
+  }
+
+  .text-expired {
+    color: oklch(var(--expired));
+  }
+
+  .bg-safe\/10 {
+    background-color: oklch(var(--safe) / 0.1);
+  }
+
+  .bg-near-expiry\/10 {
+    background-color: oklch(var(--near-expiry) / 0.1);
+  }
+
+  .bg-expired\/10 {
+    background-color: oklch(var(--expired) / 0.1);
+  }
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,0 +1,86 @@
+type UserRole = 
+ variant {
+   admin;
+   user;
+ };
+type UserInfo = 
+ record {
+   id: UserId;
+   role: UserRole;
+   username: text;
+ };
+type UserId = text;
+type UpdateMedicineRequest = 
+ record {
+   batchNumber: text;
+   expiryDate: text;
+   id: nat;
+   manufacturer: text;
+   name: text;
+   notes: text;
+ };
+type SessionToken = text;
+type MedicinesResult = 
+ variant {
+   err: text;
+   ok: vec Medicine;
+ };
+type MedicineResult = 
+ variant {
+   err: text;
+   ok: Medicine;
+ };
+type Medicine = 
+ record {
+   batchNumber: text;
+   createdAt: int;
+   expiryDate: text;
+   id: nat;
+   manufacturer: text;
+   name: text;
+   notes: text;
+   updatedAt: int;
+   userId: UserId;
+ };
+type AuthResult = 
+ variant {
+   err: text;
+   ok: record {
+         token: SessionToken;
+         user: UserInfo;
+       };
+ };
+type AddMedicineRequest = 
+ record {
+   batchNumber: text;
+   expiryDate: text;
+   manufacturer: text;
+   name: text;
+   notes: text;
+ };
+service : {
+  addMedicine: (token: SessionToken, req: AddMedicineRequest) ->
+   (MedicineResult);
+  deleteMedicine: (token: SessionToken, id: nat) -> (variant {
+                                                       err: text;
+                                                       ok;
+                                                     });
+  filterByStatus: (token: SessionToken, status: text) -> (MedicinesResult);
+  getDashboardStats: (token: SessionToken) ->
+   (record {
+      expired: nat;
+      nearExpiry: nat;
+      safe: nat;
+      total: nat;
+    });
+  getMedicine: (token: SessionToken, id: nat) -> (opt Medicine);
+  getMedicines: (token: SessionToken) -> (MedicinesResult);
+  getRecentActivity: (token: SessionToken) -> (vec Medicine);
+  login: (username: text, password: text) -> (AuthResult);
+  logout: (token: SessionToken) -> ();
+  register: (username: text, password: text) -> (AuthResult);
+  searchMedicines: (token: SessionToken, term: text) -> (MedicinesResult);
+  updateMedicine: (token: SessionToken, req: UpdateMedicineRequest) ->
+   (MedicineResult);
+  whoAmI: (token: SessionToken) -> (opt UserInfo);
+}

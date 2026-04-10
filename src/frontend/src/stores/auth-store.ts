@@ -1,0 +1,32 @@
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import type { UserInfo } from "../types/medicine";
+
+interface AuthState {
+  token: string | null;
+  user: UserInfo | null;
+  isAuthenticated: boolean;
+  setSession: (token: string, user: UserInfo) => void;
+  clearSession: () => void;
+}
+
+export const useAuthStore = create<AuthState>()(
+  persist(
+    (set) => ({
+      token: null,
+      user: null,
+      isAuthenticated: false,
+      setSession: (token, user) => set({ token, user, isAuthenticated: true }),
+      clearSession: () =>
+        set({ token: null, user: null, isAuthenticated: false }),
+    }),
+    {
+      name: "medalert-auth",
+      partialize: (state) => ({
+        token: state.token,
+        user: state.user,
+        isAuthenticated: state.isAuthenticated,
+      }),
+    },
+  ),
+);

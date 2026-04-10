@@ -1,0 +1,59 @@
+// Version: 1.0.0
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Medicine__846976137 =
+  {
+    batchNumber : Text;
+    createdAt : Int;
+    expiryDate : Text;
+    id : Nat;
+    manufacturer : Text;
+    name : Text;
+    notes : Text;
+    updatedAt : Int;
+    userId : UserId__222252808
+  };
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type SessionToken__138549763 = Text;
+type Session__866099285 =
+  {
+    expiresAt : Int;
+    token : SessionToken__138549763;
+    userId : UserId__222252808
+  };
+type UserId__222252808 = Text;
+type UserRole__151584393 = {#admin; #user};
+type User__329169821 =
+  {
+    createdAt : Int;
+    id : UserId__222252808;
+    passwordHash : Text;
+    role : UserRole__151584393;
+    username : Text
+  };
+actor {
+  stable medicines :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Medicine__846976137]];
+      var elementIndex : Nat__490723111
+    };
+  stable sessions :
+    {
+      var root : Node__46230540<SessionToken__138549763, Session__866099285>;
+      var size : Nat__490723111
+    };
+  stable state : {var initialized : Bool; var nextMedicineId : Nat};
+  stable users :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?User__329169821]];
+      var elementIndex : Nat__490723111
+    }
+};

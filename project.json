@@ -1,0 +1,30 @@
+{
+  "overview": "MedAlert AI is a full-stack medicine monitoring system that uses OCR scanning to read medicine labels, track expiry dates, and alert users when medicines are about to expire or have already expired. Features include a comprehensive dashboard with analytics, medicine management with CRUD operations, barcode scanning, PDF report generation, role-based access control, and English/Telugu language support — all built with a sleek dark theme designed for healthcare use.",
+  "features": [
+    "OCR label scanning with Tesseract.js for extracting medicine name and expiry date",
+    "Expiry detection with color-coded status badges (Safe, Near Expiry, Expired)",
+    "Dashboard with summary cards, Recharts visualizations, and activity feed",
+    "Medicine CRUD with search, filter, and sort",
+    "In-app and browser notifications for expired/near-expiry medicines",
+    "Authentication with protected routes and role-based access (Admin/User)",
+    "Sidebar navigation with dark theme and responsive design",
+    "Barcode scanning support",
+    "PDF report generation with jsPDF",
+    "English/Telugu language toggle",
+    "Pre-populated sample data with 8-10 medicines"
+  ],
+  "category": "productivity",
+  "tags": [
+    "healthcare",
+    "medicine",
+    "ocr",
+    "expiry-tracking",
+    "dashboard",
+    "dark-theme",
+    "notifications",
+    "motoko",
+    "react",
+    "tailwind"
+  ],
+  "last_updated": "2026-04-10T18:14:11.425Z"
+}
